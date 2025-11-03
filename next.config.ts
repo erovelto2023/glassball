@@ -1,9 +1,6 @@
-import type { NextConfig } from "next";
-
-// Remove the NextConfig type to avoid type errors with new properties
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // swcMinify is now the default in Next.js 13+, so we can remove it
   poweredByHeader: false,
   images: {
     domains: ['images.unsplash.com', 'img.clerk.com'],
