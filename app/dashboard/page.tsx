@@ -1,6 +1,22 @@
-import React from 'react'
+'use client'
 
-function Dashboard() {
+import { useUser } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+
+export default function Dashboard() {
+  const { isLoaded, isSignedIn } = useUser()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      router.push('/sign-in')
+    }
+  }, [isLoaded, isSignedIn, router])
+
+  if (!isLoaded) {
+    return <div>Loading...</div>
+  }
   return (
     <div className="min-h-screen p-8">
       <div className="container mx-auto max-w-7xl">
@@ -236,5 +252,3 @@ function Dashboard() {
     
   )
 }
-
-export default Dashboard

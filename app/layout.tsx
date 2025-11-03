@@ -28,17 +28,20 @@ export default function RootLayout({
       appearance={{
         cssLayerName: 'clerk'
       }}
-  
+      signInFallbackRedirectUrl="/dashboard"
+      signUpFallbackRedirectUrl="/dashboard"
+      signInUrl="/sign-in"
+      signUpUrl="/sign-up"
     >
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <header className="flex justify-end items-center p-4 gap-4 h-16">
             <SignedOut>
-              <SignInButton forceRedirectUrl="/dashboard" />
-              <SignUpButton forceRedirectUrl="/dashboard" />
+              <SignInButton fallbackRedirectUrl="/dashboard" />
+              <SignUpButton fallbackRedirectUrl="/dashboard" />
             </SignedOut>
             <SignedIn>
-              <UserButton />
+              <UserButton signInUrl="/" afterSignOutUrl="/" />
             </SignedIn>
           </header>
           {children}
