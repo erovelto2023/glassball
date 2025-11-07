@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 import { ClerkProvider, SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter, Roboto_Mono } from 'next/font/google'
 import './globals.css'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const interSans = Inter({
+  variable: '--font-inter-sans',
   subsets: ['latin'],
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const robotoMono = Roboto_Mono({
+  variable: '--font-roboto-mono',
   subsets: ['latin'],
 })
 
@@ -28,20 +28,17 @@ export default function RootLayout({
       appearance={{
         cssLayerName: 'clerk'
       }}
-      signInFallbackRedirectUrl="/dashboard"
-      signUpFallbackRedirectUrl="/dashboard"
-      signInUrl="/sign-in"
-      signUpUrl="/sign-up"
+  
     >
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <body className={`${interSans.variable} ${robotoMono.variable} antialiased`}>
           <header className="flex justify-end items-center p-4 gap-4 h-16">
             <SignedOut>
-              <SignInButton fallbackRedirectUrl="/dashboard" />
-              <SignUpButton fallbackRedirectUrl="/dashboard" />
+              <SignInButton forceRedirectUrl="/dashboard" />
+              <SignUpButton forceRedirectUrl="/dashboard" />
             </SignedOut>
             <SignedIn>
-              <UserButton signInUrl="/" afterSignOutUrl="/" />
+              <UserButton />
             </SignedIn>
           </header>
           {children}
